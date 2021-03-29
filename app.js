@@ -9,36 +9,41 @@
 // Event handling, user interaction is what starts the code execution.
 
 var taskInput=document.getElementById("new-task");//Add a new task.
+taskInput.classList.add('input');
 var addButton=document.getElementsByTagName("button")[0];//first button
 var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
 var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
-
+addButton.classList.add('btn');
 
 //New task list item
 var createNewTaskElement=function(taskString){
-
     var listItem=document.createElement("li");
+    listItem.classList.add('list-element');
 
     //input (checkbox)
     var checkBox=document.createElement("input");//checkbx
+    checkBox.classList.add('input');
     //label
     var label=document.createElement("label");//label
     //input (text)
     var editInput=document.createElement("input");//text
     //button.edit
     var editButton=document.createElement("button");//edit button
-
+    editButton.classList.add('btn');
     //button.delete
     var deleteButton=document.createElement("button");//delete button
+    deleteButton.classList.add('btn');
     var deleteButtonImg=document.createElement("img");//delete button image
+    deleteButtonImg.classList.add('remove-icon');
 
     label.innerText=taskString;
     label.className='task';
-
+    label.className+=' label';
     //Each elements, needs appending
     checkBox.type="checkbox";
     editInput.type="text";
     editInput.className="task";
+    editInput.className+=" input";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
     editButton.className="edit";
@@ -64,7 +69,6 @@ var addTask=function(){
     //Create a new list item with the text from the #new-task:
     if (!taskInput.value) return;
     var listItem=createNewTaskElement(taskInput.value);
-
     //Append listItem to incompleteTaskHolder
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskCompleted);
@@ -81,7 +85,6 @@ var editTask=function(){
 
 
     var listItem=this.parentNode;
-
     var editInput=listItem.querySelector('input[type=text]');
     var label=listItem.querySelector("label");
     var editBtn=listItem.querySelector(".edit");
@@ -133,6 +136,7 @@ var taskIncomplete=function(){
     //When the checkbox is unchecked
     //Append the task list item to the #incomplete-tasks.
     var listItem=this.parentNode;
+
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem,taskCompleted);
 }
@@ -156,9 +160,11 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
     console.log("bind list item events");
 //select ListItems children
     var checkBox=taskListItem.querySelector("input[type=checkbox]");
+    checkBox.classList.add('input');
     var editButton=taskListItem.querySelector("button.edit");
+    editButton.classList.add('btn');
     var deleteButton=taskListItem.querySelector("button.delete");
-
+    deleteButton.classList.add('btn');
 
     //Bind editTask to edit button.
     editButton.onclick=editTask;
