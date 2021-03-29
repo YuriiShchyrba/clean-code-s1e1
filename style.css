@@ -24,7 +24,7 @@
 @media (max-width:768px) {
 
   .header {
-      text-align: center;
+    text-align: center;
 }
 
 }
@@ -145,7 +145,7 @@
   width: 226px;
 }
 
-.list-element >    .input[type="text"] {
+.list-element > .input[type="text"] {
   width: 226px;
 }
 
